@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<div class="col-12" style="padding:0px;">
+  <article class="content-section">
+    <div>
+      <div class="article-datetime">
+        <p>{{ object.date_posted|date:"F j, Y, H:i" }}</p>
+      </div>
+      <p class="article-title">{% if object.title %}{{object.title}}{% else %}{{ object.date_posted|date:"F j, Y, H:i" }}{% endif %}</p>
+      <p class="article-content">{{ object.content }}</p>
+      {% if object.image %}<img src="{{ object.image.url}}" class="article-photo">{% endif %}
+      
+
+
+      <div class="article-buttons">
+        <a class="button secondary_button short_button" href="{% url 'post-update' object.id %}">Update</a>
+        <a class="button alert_button short_button" href="{% url 'post-delete' object.id %}">Delete</a>
+      </div>
+
+    </div>
+  </article>
+</div>
+
+{% endblock content %}
